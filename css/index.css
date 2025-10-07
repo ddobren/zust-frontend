@@ -1,21 +1,33 @@
 /* Root Variables - Updated with new color palette */
 :root {
   /* New color palette */
-  --primary: #5d4ea9; /* Deep purple */
-  --primary-light: #7b77b7; /* Lighter purple */
-  --primary-dark: #433689; /* Darker purple */
+  --primary: #5d4ea9;
+  /* Deep purple */
+  --primary-light: #7b77b7;
+  /* Lighter purple */
+  --primary-dark: #433689;
+  /* Darker purple */
 
-  --secondary: #f9b248; /* Golden yellow */
-  --secondary-light: #fbca7a; /* Lighter yellow */
-  --secondary-dark: #e89a2a; /* Darker yellow */
+  --secondary: #f9b248;
+  /* Golden yellow */
+  --secondary-light: #fbca7a;
+  /* Lighter yellow */
+  --secondary-dark: #e89a2a;
+  /* Darker yellow */
 
-  --accent: #e76f76; /* Coral pink */
-  --accent-light: #ee9298; /* Lighter coral */
-  --accent-dark: #d04e56; /* Darker coral */
+  --accent: #e76f76;
+  /* Coral pink */
+  --accent-light: #ee9298;
+  /* Lighter coral */
+  --accent-dark: #d04e56;
+  /* Darker coral */
 
-  --highlight: #7b77b7; /* Periwinkle blue */
-  --highlight-light: #9a97c9; /* Lighter periwinkle */
-  --highlight-dark: #5d5a9e; /* Darker periwinkle */
+  --highlight: #7b77b7;
+  /* Periwinkle blue */
+  --highlight-light: #9a97c9;
+  /* Lighter periwinkle */
+  --highlight-dark: #5d5a9e;
+  /* Darker periwinkle */
 
   /* Text colors */
   --text-primary: #1e293b;
@@ -388,11 +400,11 @@ input {
   border-radius: 50%;
 }
 
-input:checked + .toggle-slider {
+input:checked+.toggle-slider {
   background-color: var(--primary);
 }
 
-input:checked + .toggle-slider:before {
+input:checked+.toggle-slider:before {
   transform: translateX(26px);
 }
 
@@ -425,14 +437,17 @@ input:checked + .toggle-slider:before {
 
 /* Header Styles */
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
   width: 100%;
   height: var(--header-height);
-  background-color: var(--primary);
+  background: rgba(255, 255, 255, 0.1);
+  /* poluprozirna pozadina */
+  backdrop-filter: blur(10px);
+  /* zamućenje pozadine */
+  -webkit-backdrop-filter: blur(10px);
+  /* podrška za Safari */
   z-index: 1000;
-  box-shadow: 0 2px 10px var(--shadow);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
 }
 
@@ -673,7 +688,6 @@ input:checked + .toggle-slider:before {
 
 .accessibility-button:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  color: var(--secondary);
   transform: rotate(15deg);
 }
 
@@ -709,10 +723,8 @@ input:checked + .toggle-slider:before {
 /* Hero Section */
 /* HERO SECTION - Improved Professional Version */
 .hero {
-  margin-top: var(--header-height);
   position: relative;
-  background: url("https://www.theepochtimes.com/_next/image?url=https%3A%2F%2Fimg.theepochtimes.com%2Fassets%2Fuploads%2F2024%2F07%2F28%2Fid5695129-0200-1080x720.jpg&w=1200&q=75")
-    center / cover no-repeat;
+  background: url("https://www.theepochtimes.com/_next/image?url=https%3A%2F%2Fimg.theepochtimes.com%2Fassets%2Fuploads%2F2024%2F07%2F28%2Fid5695129-0200-1080x720.jpg&w=1200&q=75") center / cover no-repeat;
   color: white;
   padding: 100px 20px 120px;
   text-align: center;
@@ -730,7 +742,7 @@ input:checked + .toggle-slider:before {
 
 .hero-content {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 10px auto;
   position: relative;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.35);
@@ -1059,7 +1071,7 @@ input:checked + .toggle-slider:before {
   cursor: pointer;
   transition: background-color var(--transition), color var(--transition),
     transform var(--transition);
-    display: none;
+  display: none;
 }
 
 .btn-load-more:hover {
@@ -1299,6 +1311,7 @@ input:checked + .toggle-slider:before {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1309,9 +1322,11 @@ input:checked + .toggle-slider:before {
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
+
   100% {
     transform: scale(1);
   }
