@@ -1,73 +1,32 @@
-# React + TypeScript + Vite
+# zust frontend scaffold
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Cleaned Vite + React baseline prepared for migrating an existing vanilla HTML/CSS/JS frontend into components.
 
-Currently, two official plugins are available:
+## Getting started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `npm install` to install dependencies.
+- `npm run dev` to launch the local dev server.
+- `npm run build` to create a production build.
+- `npm run preview` to preview the production build locally.
 
-## React Compiler
+## Project layout
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `index.html` — minimal document shell used by Vite.
+- `src/main.tsx` — React entry point that mounts the app.
+- `src/App.tsx` — root component that wires layouts and feature sections.
+- `src/components/` — add UI building blocks here as you migrate content (e.g. `Header`).
+- `src/layout/` — shared page layouts; currently includes `MainLayout`.
+- `src/scripts/` — place converted vanilla JS logic for gradual refactors.
+- `src/styles/` — global, layout, and component styles (`index.css`, `App.css`, `components/header.css`).
+- `public/` — drop static assets here if you need to serve them as-is.
 
-## Expanding the ESLint configuration
+Create new components inside `src/components` (directory can be created as needed) and import them into `App.tsx` or wherever fits your structure.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Migration tips
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Move static HTML sections into small, focused React components.
+2. Convert each CSS block into scoped styles (`.module.css`, styled-components, etc.) or keep shared rules inside `src/index.css`.
+3. Place JavaScript behaviour into hooks or component logic rather than relying on global scripts.
+4. Static assets (images, fonts) can stay in `public` for direct serving or be imported from `src` for bundling.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This scaffold keeps only essential files so you can focus on translating the existing UI into React. Adjust linting, routing, or state management as your project grows.
