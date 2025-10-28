@@ -1,49 +1,55 @@
-import { useEffect, useId, useState, type FocusEvent } from 'react'
+import { useEffect, useId, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react'
 
-import '../styles/components/header.css'
+import logo from '../assets/logo.png'
+
+type HeaderProps = {
+  onAccessibilityToggle: () => void
+  onNavigate: (path: string) => void
+  currentPath: string
+}
 
 type NavLink = {
   href: string
   label: string
-  isActive?: boolean
+  external?: boolean
 }
-
-const navLinks: NavLink[] = [
-  { href: '#', label: 'Početna', isActive: true },
-  { href: 'o-nama.html', label: 'O nama' },
-]
 
 type CategoryGroup = {
   title: string
-  items: Array<{ label: string; category: string }>
+  items: Array<{ label: string; category: string; href: string }>
 }
+
+const navLinks: NavLink[] = [
+  { href: '/', label: 'Početna' },
+  { href: '/projekt', label: 'O projektu' },
+  { href: 'https://hedy.ekonomska-dubrovnik.com/', label: 'Slikovnica', external: true },
+  { href: '/radionice', label: 'Radionice' },
+  { href: '/partneri', label: 'Partneri' },
+]
 
 const categoryGroups: CategoryGroup[] = [
   {
-    title: 'Inspiracija',
+    title: 'Hedy Lamarr',
     items: [
-      { label: 'Žene u tehnologiji', category: 'women-tech' },
-      { label: 'Biografije', category: 'biographies' },
-      { label: 'Uloge u društvu', category: 'society-roles' },
-      { label: 'Poznate znanstvenice', category: 'famous-scientists' },
+      { label: 'Životopis', category: 'hedy-zivotopis', href: '/post/hedy-zivotopis' },
+      { label: 'Vremenska crta', category: 'hedy-timeline', href: '/post/hedy-timeline' },
+      { label: 'Izdvojena priča', category: 'hedy-featured', href: '/post/hedy-featured' },
     ],
   },
   {
-    title: 'Edukacija',
+    title: 'Tehnološki koncepti',
     items: [
-      { label: 'STEM područja', category: 'stem' },
-      { label: 'Tehnološki razvoj', category: 'tech-history' },
-      { label: 'Inovacije', category: 'innovation' },
-      { label: 'Interaktivno učenje', category: 'interactive-learning' },
+      { label: 'Frekvencijsko skakanje', category: 'frequency-hopping', href: '/post/frekvencijsko-skakanje' },
+      { label: 'Bluetooth & Wi-Fi', category: 'bluetooth', href: '/post/bluetooth-wifi' },
+      { label: 'Sigurnost komunikacija', category: 'sigurnost-komunikacija', href: '/post/sigurnost-komunikacija' },
     ],
   },
   {
-    title: 'Digitalni svijet',
+    title: 'Za učionicu',
     items: [
-      { label: 'Web i mediji', category: 'web-media' },
-      { label: 'Multimedija', category: 'multimedia' },
-      { label: 'Računalna grafika', category: 'graphics' },
-      { label: 'Programiranje', category: 'coding' },
+      { label: 'Radionice', category: 'workshop', href: '/post/radionica-tajna-poruka' },
+      { label: 'Materijali za nastavnike', category: 'teachers', href: '/post/materijali-nastavnike' },
+      { label: 'Inspiracija za STEM', category: 'stem-inspiracija', href: '/post/stem-mentorice' },
     ],
   },
 ]
@@ -65,86 +71,168 @@ const accessibilityIcon = (
   </svg>
 )
 
-function Header() {
+function Header({ onAccessibilityToggle, onNavigate, currentPath }: HeaderProps) {
   const dropdownButtonId = useId()
   const dropdownMenuId = `${dropdownButtonId}-menu`
+  const dropdownSearchId = `${dropdownButtonId}-search`
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
+
+  const dropdownRef = useRef<HTMLLIElement | null>(null)
+  const searchInputRef = useRef<HTMLInputElement | null>(null)
+
   useEffect(() => {
     if (typeof document === 'undefined') {
       return
     }
 
-    if (isMobileNavOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = isMobileNavOpen ? 'hidden' : ''
 
     return () => {
-      if (typeof document === 'undefined') {
-        return
-      }
-
       document.body.style.overflow = ''
     }
   }, [isMobileNavOpen])
 
-  const closeDropdown = () => setIsDropdownOpen(false)
+  useEffect(() => {
+    if (!isDropdownOpen || typeof document === 'undefined') {
+      return
+    }
+
+    const handleClickOutside = (event: globalThis.MouseEvent) => {
+      const target = event.target as HTMLElement | null
+      if (!target) {
+        return
+      }
+
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
+        setIsDropdownOpen(false)
+      }
+    }
+
+    const handleKeydown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleKeydown)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleKeydown)
+    }
+  }, [isDropdownOpen])
+
+  useEffect(() => {
+    if (isDropdownOpen) {
+      searchInputRef.current?.focus()
+    } else {
+      setSearchTerm('')
+    }
+  }, [isDropdownOpen])
+
+  const normalizedSearch = searchTerm.trim().toLowerCase()
+
+  const filteredGroups = useMemo(() => {
+    if (!normalizedSearch) {
+      return categoryGroups
+    }
+
+    return categoryGroups
+      .map((group) => ({
+        ...group,
+        items: group.items.filter((item) => item.label.toLowerCase().includes(normalizedSearch)),
+      }))
+      .filter((group) => group.items.length > 0)
+  }, [normalizedSearch])
 
   const handleDropdownToggle = () => {
-    setIsDropdownOpen((prev) => !prev)
+    setIsDropdownOpen((previous) => !previous)
   }
 
-  const handleDropdownBlur = (event: FocusEvent<HTMLLIElement>) => {
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      closeDropdown()
+  const closeMenus = () => {
+    setIsDropdownOpen(false)
+    setIsMobileNavOpen(false)
+  }
+
+  const navigateInternal = (path: string) => {
+    onNavigate(path)
+  }
+
+  const isActiveLink = (href: string) => {
+    if (href === '/') {
+      return currentPath === '/'
     }
+
+    return currentPath.startsWith(href)
   }
 
-  const handleDropdownMouseLeave = () => {
-    closeDropdown()
+  const handleNavLinkClick = (event: ReactMouseEvent<HTMLAnchorElement>, href: string, external?: boolean) => {
+    if (!external) {
+      event.preventDefault()
+      navigateInternal(href)
+    }
+
+    closeMenus()
+  }
+
+  const handleCategoryClick = (event: ReactMouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault()
+    navigateInternal(href)
+    closeMenus()
   }
 
   const handleHamburgerToggle = () => {
-    setIsMobileNavOpen((prev) => !prev)
+    setIsMobileNavOpen((previous) => !previous)
   }
 
-  const handleNavInteraction = () => {
-    setIsMobileNavOpen(false)
-    closeDropdown()
+  const handleAccessibilityClick = () => {
+    onAccessibilityToggle()
+    closeMenus()
+  }
+
+  const handleBrandClick = (event: ReactMouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    navigateInternal('/')
+    closeMenus()
   }
 
   return (
     <header className="header">
       <div className="header-inner">
-        <nav className={`nav${isMobileNavOpen ? ' active' : ''}`}>
+        <div className="header-brand">
+          <a href="/" className="header-logo" onClick={handleBrandClick} aria-label="Početna">
+            <img src={logo} alt="Znamenite žene logo" className="header-logo__image" />
+          </a>
+        </div>
+        <nav className={`nav${isMobileNavOpen ? ' active' : ''}`} id="mainNav">
           <ul className="nav-links">
-            {navLinks.map(({ href, label, isActive }) => (
+            {navLinks.map(({ href, label, external }) => (
               <li key={label}>
                 <a
                   href={href}
-                  className={isActive ? 'active' : undefined}
-                  onClick={handleNavInteraction}
+                  className={isActiveLink(href) ? 'active' : undefined}
+                  onClick={(event) => handleNavLinkClick(event, href, external)}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                  target={external ? '_blank' : undefined}
                 >
                   {label}
                 </a>
               </li>
             ))}
 
-            <li
-              className="nav-dropdown"
-              onBlur={handleDropdownBlur}
-              onMouseLeave={handleDropdownMouseLeave}
-            >
+            <li className="nav-dropdown" ref={dropdownRef}>
               <button
-                type="button"
                 className="nav-dropdown-toggle"
                 id={dropdownButtonId}
                 aria-label="Kategorije"
-                aria-haspopup="true"
                 aria-expanded={isDropdownOpen}
+                aria-haspopup="true"
                 aria-controls={dropdownMenuId}
+                type="button"
                 onClick={handleDropdownToggle}
               >
                 <span>Kategorije</span>
@@ -165,21 +253,48 @@ function Header() {
               </button>
               <div
                 className={`nav-dropdown-menu${isDropdownOpen ? ' active' : ''}`}
-                role="menu"
                 id={dropdownMenuId}
+                role="menu"
                 aria-labelledby={dropdownButtonId}
               >
+                <div className="dropdown-search">
+                  <input
+                    type="search"
+                    id={dropdownSearchId}
+                    placeholder="Pretraži kategorije..."
+                    className="dropdown-search-input"
+                    autoComplete="off"
+                    value={searchTerm}
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                    ref={searchInputRef}
+                  />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="dropdown-search-icon"
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
                 <div className="dropdown-menu-container">
-                  {categoryGroups.map((group) => (
+                  {filteredGroups.map((group) => (
                     <div className="dropdown-menu-column" key={group.title}>
                       <h4>{group.title}</h4>
                       {group.items.map((item) => (
                         <a
                           key={item.category}
-                          href="#"
+                          href={item.href}
                           className="dropdown-category-item"
                           data-category={item.category}
-                          onClick={handleNavInteraction}
+                          onClick={(event) => handleCategoryClick(event, item.href)}
                           role="menuitem"
                         >
                           {item.label}
@@ -188,6 +303,15 @@ function Header() {
                     </div>
                   ))}
                 </div>
+                <div className="dropdown-menu-footer">
+                  <a
+                    href="/kategorije"
+                    className="view-all-categories"
+                    onClick={(event) => handleCategoryClick(event, '/kategorije')}
+                  >
+                    Pogledaj sve kategorije
+                  </a>
+                </div>
               </div>
             </li>
           </ul>
@@ -195,9 +319,10 @@ function Header() {
           <div className="mobile-actions">
             <button
               className="accessibility-button"
-              type="button"
+              id="mobileAccessibilityButton"
               aria-label="Postavke pristupačnosti"
-              onClick={handleNavInteraction}
+              type="button"
+              onClick={handleAccessibilityClick}
             >
               {accessibilityIcon}
             </button>
@@ -207,8 +332,10 @@ function Header() {
         <div className="header-actions">
           <button
             className="accessibility-button"
-            type="button"
+            id="accessibilityButton"
             aria-label="Postavke pristupačnosti"
+            type="button"
+            onClick={handleAccessibilityClick}
           >
             {accessibilityIcon}
           </button>
@@ -216,9 +343,10 @@ function Header() {
 
         <button
           className="hamburger"
-          type="button"
+          id="hamburger"
           aria-label="Izbornik"
           aria-expanded={isMobileNavOpen}
+          type="button"
           onClick={handleHamburgerToggle}
         >
           <span></span>

@@ -1,6 +1,6 @@
 # zust frontend scaffold
 
-Cleaned Vite + React baseline prepared for migrating an existing vanilla HTML/CSS/JS frontend into components.
+`init/react-setup`'s static `index.html` has been migrated into a component-based Vite + React app with the original styling and interactivity preserved (navigation dropdown, accessibility tools, reading guide and back-to-top helpers).
 
 ## Getting started
 
@@ -13,11 +13,11 @@ Cleaned Vite + React baseline prepared for migrating an existing vanilla HTML/CS
 
 - `index.html` — minimal document shell used by Vite.
 - `src/main.tsx` — React entry point that mounts the app.
-- `src/App.tsx` — root component that wires layouts and feature sections.
-- `src/components/` — add UI building blocks here as you migrate content (e.g. `Header`).
-- `src/layout/` — shared page layouts; currently includes `MainLayout`.
-- `src/scripts/` — place converted vanilla JS logic for gradual refactors.
-- `src/styles/` — global, layout, and component styles (`index.css`, `App.css`, `components/header.css`).
+- `src/App.tsx` — orchestrates accessibility state and composes the homepage.
+- `src/components/` — React components mirroring the original sections (`Header`, `AccessibilityPanel`, `Hero`, `FeaturedPost`, `LatestPosts`, `Footer`, `BackToTop`, `ReadingGuide`).
+- `src/assets/` — imported static assets such as the navbar logo.
+- `src/scripts/` — staging area for any remaining vanilla JS you plan to refactor.
+- `src/styles/index.css` — global stylesheet copied from the original project.
 - `public/` — drop static assets here if you need to serve them as-is.
 
 Create new components inside `src/components` (directory can be created as needed) and import them into `App.tsx` or wherever fits your structure.
@@ -29,4 +29,4 @@ Create new components inside `src/components` (directory can be created as neede
 3. Place JavaScript behaviour into hooks or component logic rather than relying on global scripts.
 4. Static assets (images, fonts) can stay in `public` for direct serving or be imported from `src` for bundling.
 
-This scaffold keeps only essential files so you can focus on translating the existing UI into React. Adjust linting, routing, or state management as your project grows.
+This scaffold keeps the original look-and-feel while letting you extend the UI with React components, routing, or state management as the project grows.
