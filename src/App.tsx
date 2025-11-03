@@ -211,8 +211,8 @@ function App() {
     }
 
     return (
-      <main className="landing-content">
-        <section className="intro-card">
+      <main className="landing-content landing-content--not-found">
+        <section className="intro-card intro-card--not-found">
           <h1>Stranica nije pronađena</h1>
           <p>Zatraženi sadržaj nije dostupan. Vratite se na početnu stranicu.</p>
           <a className="card__cta" href="/" onClick={(event) => { event.preventDefault(); handleNavigate('/') }}>
