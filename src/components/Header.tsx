@@ -6,6 +6,7 @@ type HeaderProps = {
   onAccessibilityToggle: () => void
   onNavigate: (path: string) => void
   currentPath: string
+  isAccessibilityActive: boolean
 }
 
 type NavLink = {
@@ -17,7 +18,6 @@ type NavLink = {
 const navLinks: NavLink[] = [
   { href: '/', label: 'Početna' },
   { href: '/projekt', label: 'O projektu' },
-  { href: 'https://hedy.ekonomska-dubrovnik.com/', label: 'Slikovnica', external: true },
   { href: '/radionice', label: 'Radionice' },
   { href: '/partneri', label: 'Partneri' },
   { href: '/blog', label: 'Blog' },
@@ -35,12 +35,13 @@ const accessibilityIcon = (
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <circle cx="12" cy="12" r="3"></circle>
-    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+    <circle cx="12" cy="7" r="3" />
+    <path d="M5 21l2-8 5-2 5 2 2 8" />
+    <path d="M9 21v-5a3 3 0 0 1 6 0v5" />
   </svg>
 )
 
-function Header({ onAccessibilityToggle, onNavigate, currentPath }: HeaderProps) {
+function Header({ onAccessibilityToggle, onNavigate, currentPath, isAccessibilityActive }: HeaderProps) {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
 
   useEffect(() => {
@@ -121,23 +122,25 @@ function Header({ onAccessibilityToggle, onNavigate, currentPath }: HeaderProps)
           </ul>
 
           <div className="mobile-actions">
-            <button
-              className="accessibility-button"
-              id="mobileAccessibilityButton"
-              aria-label="Postavke pristupačnosti"
-              type="button"
-              onClick={handleAccessibilityClick}
-            >
-              {accessibilityIcon}
-            </button>
-          </div>
+          <button
+            className={`accessibility-button${isAccessibilityActive ? ' active' : ''}`}
+            id="mobileAccessibilityButton"
+            aria-label="Postavke pristupačnosti"
+            aria-pressed={isAccessibilityActive}
+            type="button"
+            onClick={handleAccessibilityClick}
+          >
+            {accessibilityIcon}
+          </button>
+        </div>
         </nav>
 
         <div className="header-actions">
           <button
-            className="accessibility-button"
+            className={`accessibility-button${isAccessibilityActive ? ' active' : ''}`}
             id="accessibilityButton"
             aria-label="Postavke pristupačnosti"
+            aria-pressed={isAccessibilityActive}
             type="button"
             onClick={handleAccessibilityClick}
           >

@@ -99,8 +99,8 @@
 
 .blog-content {
   max-width: 1160px;
-  margin: -40px auto 80px;
-  padding: 0 24px;
+  margin: 40px auto 80px;
+  padding: 0 24px 80px;
 }
 
 .blog-filters {
@@ -111,11 +111,62 @@
   box-shadow: 0 24px 45px -36px rgba(15, 23, 42, 0.2);
   margin-bottom: 32px;
 }
+.blog-filters__panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.2s ease;
+  margin-top: 0;
+  padding-top: 0;
+}
 
-.blog-filters p {
+.blog-filters__panel.open {
+  max-height: 500px;
+  margin-top: 12px;
+  padding-top: 4px;
+  opacity: 1;
+}
+
+.blog-filters__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.blog-filters__header p {
   margin-bottom: 16px;
   font-weight: 600;
   color: #0f172a;
+  flex: 1;
+}
+
+.blog-filters__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(93, 78, 169, 0.35);
+  background: rgba(93, 78, 169, 0.1);
+  color: #433689;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.blog-filters__toggle svg {
+  transition: transform 0.2s ease;
+}
+
+.blog-filters__toggle svg.rotated {
+  transform: rotate(180deg);
+}
+
+.blog-filters__toggle:hover {
+  background: #5d4ea9;
+  border-color: #5d4ea9;
+  color: #ffffff;
 }
 
 .blog-filters__buttons {

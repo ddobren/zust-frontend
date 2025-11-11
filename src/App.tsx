@@ -256,6 +256,7 @@ function App() {
         currentPath={currentPath}
         onAccessibilityToggle={handleAccessibilityToggle}
         onNavigate={handleNavigate}
+        isAccessibilityOpen={isAccessibilityOpen}
       >
         {pageContent}
       </PageShell>

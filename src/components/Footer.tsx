@@ -74,6 +74,15 @@ function Footer({ onNavigate }: FooterProps) {
               </a>
             </li>
             <li>
+              <a
+                href="https://hedy.ekonomska-dubrovnik.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Slikovnica
+              </a>
+            </li>
+            <li>
               <a href="/projekt" onClick={(event) => handleNavigation(event, '/projekt')}>
                 O projektu
               </a>
@@ -86,11 +95,6 @@ function Footer({ onNavigate }: FooterProps) {
             <li>
               <a href="/partneri" onClick={(event) => handleNavigation(event, '/partneri')}>
                 Partneri
-              </a>
-            </li>
-            <li>
-              <a href="/kategorije" onClick={(event) => handleNavigation(event, '/kategorije')}>
-                Kategorije
               </a>
             </li>
           </ul>

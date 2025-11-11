@@ -9,15 +9,17 @@ type PageShellProps = {
   onAccessibilityToggle: () => void
   onNavigate: (path: string) => void
   currentPath: string
+  isAccessibilityOpen: boolean
 }
 
-function PageShell({ children, onAccessibilityToggle, onNavigate, currentPath }: PageShellProps) {
+function PageShell({ children, onAccessibilityToggle, onNavigate, currentPath, isAccessibilityOpen }: PageShellProps) {
   return (
     <div className="container">
       <Header
         currentPath={currentPath}
         onAccessibilityToggle={onAccessibilityToggle}
         onNavigate={onNavigate}
+        isAccessibilityActive={isAccessibilityOpen}
       />
       {children}
       <Footer onNavigate={onNavigate} />
