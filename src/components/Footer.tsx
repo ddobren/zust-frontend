@@ -69,6 +69,11 @@ function Footer({ onNavigate }: FooterProps) {
               </a>
             </li>
             <li>
+              <a href="/blog" onClick={(event) => handleNavigation(event, '/blog')}>
+                Blog
+              </a>
+            </li>
+            <li>
               <a href="/projekt" onClick={(event) => handleNavigation(event, '/projekt')}>
                 O projektu
               </a>

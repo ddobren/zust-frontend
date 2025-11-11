@@ -4,6 +4,7 @@ import AccessibilityPanel, { type Theme } from './components/AccessibilityPanel'
 import PageShell from './components/PageShell'
 import ReadingGuide from './components/ReadingGuide'
 import CategoriesPage from './pages/CategoriesPage'
+import BlogPage from './pages/BlogPage'
 import HomePage from './pages/HomePage'
 import PartnersPage from './pages/PartnersPage'
 import PostPage from './pages/PostPage'
@@ -199,6 +200,10 @@ function App() {
 
     if (currentPath === '/partneri') {
       return <PartnersPage onNavigate={handleNavigate} />
+    }
+
+    if (currentPath === '/blog') {
+      return <BlogPage onNavigate={handleNavigate} />
     }
 
     if (currentPath === '/kategorije') {
