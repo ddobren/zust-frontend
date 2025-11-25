@@ -26,7 +26,7 @@ function ProjectPage({ onNavigate }: PageProps) {
           skakanja otvara teme sigurnog komuniciranja, inovacija i građanske odgovornosti.
         </article>
 
-        <h2 className="section-title">Ciljevi i rezultati</h2>
+        {/*<h2 className="section-title">Ciljevi i rezultati</h2>
         <section className="card-grid">
           <article className="card">
             <span className="card__eyebrow">Edukacija</span>
@@ -79,6 +79,7 @@ function ProjectPage({ onNavigate }: PageProps) {
             </div>
           </article>
         </section>
+        */}
 
         <h2 className="section-title">Faze rada</h2>
         <section className="list-group">

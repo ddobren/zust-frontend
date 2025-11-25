@@ -102,6 +102,10 @@ function Header({ onAccessibilityToggle, onNavigate, currentPath, isAccessibilit
         <div className="header-brand">
           <a href="/" className="header-logo" onClick={handleBrandClick} aria-label="Početna">
             <img src={logo} alt="Znamenite žene logo" className="header-logo__image" />
+            <div className="header-logo__text" aria-hidden="true">
+              <span className="header-logo__title">Znamenite žene</span>
+              <span className="header-logo__subtitle">u svijetu tehnologije</span>
+            </div>
           </a>
         </div>
         <nav className={`nav${isMobileNavOpen ? ' active' : ''}`} id="mainNav">
