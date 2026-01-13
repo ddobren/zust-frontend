@@ -66,10 +66,10 @@
 }
 
 .landing-content {
-  max-width: 1160px;
+  max-width: var(--container-width);
   margin: 0 auto;
   width: 100%;
-  padding: 0 24px 80px;
+  padding: 0 clamp(18px, 4vw, 32px) clamp(56px, 7vw, 100px);
 }
 
 .landing-content .intro-card {
@@ -98,9 +98,9 @@
 }
 
 .blog-content {
-  max-width: 1160px;
-  margin: 40px auto 80px;
-  padding: 0 24px 80px;
+  max-width: var(--container-width);
+  margin: 40px auto clamp(56px, 7vw, 100px);
+  padding: 0 clamp(18px, 4vw, 32px) clamp(56px, 7vw, 100px);
 }
 
 .blog-filters {
@@ -271,16 +271,22 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(93, 78, 169, 0.35);
+  background: rgba(93, 78, 169, 0.08);
+  font-weight: 700;
   color: #5d4ea9;
-  padding: 8px 12px;
-  border-radius: 10px;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background-color var(--transition), color var(--transition), transform var(--transition),
+    box-shadow var(--transition), border-color var(--transition);
 }
 
 .landing-content .card__cta:hover {
-  background: rgba(93, 78, 169, 0.12);
-  color: #433689;
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -16px rgba(93, 78, 169, 0.35);
 }
 
 .landing-content .card__cta svg {
@@ -344,17 +350,20 @@
   gap: 8px;
   padding: 10px 18px;
   border-radius: 12px;
-  background: #ffffff;
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  font-weight: 600;
+  background: rgba(93, 78, 169, 0.08);
+  border: 1px solid rgba(93, 78, 169, 0.35);
+  font-weight: 700;
   color: #5d4ea9;
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  transition: background-color var(--transition), color var(--transition), transform var(--transition),
+    box-shadow var(--transition), border-color var(--transition);
 }
 
 .landing-content .back-link a:hover {
   transform: translateY(-3px);
   box-shadow: 0 16px 32px -20px rgba(93, 78, 169, 0.35);
-  color: #433689;
+  color: #ffffff;
+  background: var(--primary);
+  border-color: var(--primary-dark);
 }
 
 @media (max-width: 768px) {

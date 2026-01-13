@@ -1,3 +1,5 @@
+import type { MouseEvent } from 'react'
+
 type FooterProps = {
   onNavigate?: (path: string) => void
 }
@@ -144,4 +146,3 @@ function Footer({ onNavigate }: FooterProps) {
 }
 
 export default Footer
-import type { MouseEvent } from 'react'
