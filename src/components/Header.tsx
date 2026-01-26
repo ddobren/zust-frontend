@@ -3,10 +3,8 @@ import { useEffect, useState, type MouseEvent as ReactMouseEvent } from 'react'
 import logo from '../assets/logo.png'
 
 type HeaderProps = {
-  onAccessibilityToggle: () => void
   onNavigate: (path: string) => void
   currentPath: string
-  isAccessibilityActive: boolean
 }
 
 type NavLink = {
@@ -18,30 +16,12 @@ type NavLink = {
 const navLinks: NavLink[] = [
   { href: '/', label: 'Početna' },
   { href: '/projekt', label: 'O projektu' },
-  { href: '/radionice', label: 'Radionice' },
+  { href: '/radovi', label: 'Arhiva radova' },
   { href: '/partneri', label: 'Partneri' },
   { href: '/blog', label: 'Blog' },
 ]
 
-const accessibilityIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="22"
-    height="22"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="12" cy="7" r="3" />
-    <path d="M5 21l2-8 5-2 5 2 2 8" />
-    <path d="M9 21v-5a3 3 0 0 1 6 0v5" />
-  </svg>
-)
-
-function Header({ onAccessibilityToggle, onNavigate, currentPath, isAccessibilityActive }: HeaderProps) {
+function Header({ onNavigate, currentPath }: HeaderProps) {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
 
   useEffect(() => {
@@ -85,11 +65,6 @@ function Header({ onAccessibilityToggle, onNavigate, currentPath, isAccessibilit
     setIsMobileNavOpen((previous) => !previous)
   }
 
-  const handleAccessibilityClick = () => {
-    onAccessibilityToggle()
-    closeMenus()
-  }
-
   const handleBrandClick = (event: ReactMouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
     navigateInternal('/')
@@ -124,33 +99,7 @@ function Header({ onAccessibilityToggle, onNavigate, currentPath, isAccessibilit
               </li>
             ))}
           </ul>
-
-          <div className="mobile-actions">
-          <button
-            className={`accessibility-button${isAccessibilityActive ? ' active' : ''}`}
-            id="mobileAccessibilityButton"
-            aria-label="Postavke pristupačnosti"
-            aria-pressed={isAccessibilityActive}
-            type="button"
-            onClick={handleAccessibilityClick}
-          >
-            {accessibilityIcon}
-          </button>
-        </div>
         </nav>
-
-        <div className="header-actions">
-          <button
-            className={`accessibility-button${isAccessibilityActive ? ' active' : ''}`}
-            id="accessibilityButton"
-            aria-label="Postavke pristupačnosti"
-            aria-pressed={isAccessibilityActive}
-            type="button"
-            onClick={handleAccessibilityClick}
-          >
-            {accessibilityIcon}
-          </button>
-        </div>
 
         <button
           className="hamburger"

@@ -81,27 +81,6 @@ function ProjectPage({ onNavigate }: PageProps) {
         </section>
         */}
 
-        <h2 className="section-title">Faze rada</h2>
-        <section className="list-group">
-          <ul>
-            <li>
-              <strong>Istraživanje i scenarij</strong> – analiza izvora, pisanje priče i storyboarda, stvaranje sinopsisa za
-              digitalnu slikovnicu.
-            </li>
-            <li>
-              <strong>Vizualna produkcija</strong> – ilustracije, animacijski testovi i izrada grafičkog identiteta kroz
-              mentoriranje učenica.
-            </li>
-            <li>
-              <strong>Programiranje</strong> – izrada interaktivnih elemenata, UX planiranje i testiranje pristupačnosti.
-            </li>
-            <li>
-              <strong>Objava i evaluacija</strong> – javna promocija, ankete, suradnja s lokalnom zajednicom i iteracije za
-              iduću godinu.
-            </li>
-          </ul>
-        </section>
-
         <div className="back-link">
           <a href="/" onClick={createNavigateHandler(onNavigate, '/')}>
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">

@@ -10,30 +10,30 @@ function LatestPosts({ onNavigate }: LatestPostsProps) {
       <h2 className="section-title">Najnoviji članci</h2>
       <div className="posts-grid">
         {blogPosts.map((post) => (
-          <article className="post-card" key={post.title}>
+          <article className="post-card post-card--blog" key={post.title}>
             <div className="post-image">
               <img src={post.image} alt={post.alt} />
+              <span className="post-chip">{post.category}</span>
             </div>
             <div className="post-content">
-              <div className="post-meta">
-                <span className="post-category">{post.category}</span>
-                <span className="post-date">{post.date}</span>
-              </div>
+              <p className="post-date">{post.date}</p>
               <h3 className="post-title">{post.title}</h3>
               <p className="post-excerpt">{post.excerpt}</p>
-              <a
-                href={post.link}
-                className="read-more"
-                onClick={(event) => {
-                  if (!onNavigate) {
-                    return
-                  }
-                  event.preventDefault()
-                  onNavigate(post.link)
-                }}
-              >
-                Pročitaj više →
-              </a>
+              <div className="post-actions">
+                <a
+                  href={post.link}
+                  className="read-more read-more--solid"
+                  onClick={(event) => {
+                    if (!onNavigate) {
+                      return
+                    }
+                    event.preventDefault()
+                    onNavigate(post.link)
+                  }}
+                >
+                  Otvori priču
+                </a>
+              </div>
             </div>
           </article>
         ))}
