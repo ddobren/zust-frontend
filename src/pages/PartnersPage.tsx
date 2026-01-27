@@ -1,10 +1,8 @@
-import { createNavigateHandler } from './utils'
-
 type PageProps = {
   onNavigate: (path: string) => void
 }
 
-function PartnersPage({ onNavigate }: PageProps) {
+function PartnersPage({ }: PageProps) {
   return (
     <>
       <section className="landing-hero">
