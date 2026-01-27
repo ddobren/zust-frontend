@@ -23,8 +23,8 @@ function renderPost(post: Article, onNavigate: (path: string) => void) {
         <div className="article-meta">
           <a
             className="article-category"
-            href={`/kategorije#${post.category.toLowerCase().replace(/\s+/g, '-')}`}
-            onClick={(event) => handleAnchorNavigate(event, '/kategorije', onNavigate)}
+            href="/slikovnice"
+            onClick={(event) => handleAnchorNavigate(event, '/slikovnice', onNavigate)}
           >
             {post.category}
           </a>

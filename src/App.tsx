@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import PageShell from './components/PageShell'
-import CategoriesPage from './pages/CategoriesPage'
 import BlogPage from './pages/BlogPage'
 import HomePage from './pages/HomePage'
 import PartnersPage from './pages/PartnersPage'
 import PostPage from './pages/PostPage'
 import ProjectPage from './pages/ProjectPage'
 import ArchivePage from './pages/ArchivePage'
+import ContactPage from './pages/ContactPage'
 import './styles/article.css'
 import './styles/landing.css'
 
@@ -55,7 +55,7 @@ function App() {
       return <ProjectPage onNavigate={handleNavigate} />
     }
 
-    if (currentPath === '/radovi' || currentPath === '/arhiva' || currentPath === '/radionice') {
+    if (currentPath === '/radovi' || currentPath === '/arhiva' || currentPath === '/radionice' || currentPath === '/slikovnice') {
       return <ArchivePage onNavigate={handleNavigate} />
     }
 
@@ -63,12 +63,12 @@ function App() {
       return <PartnersPage onNavigate={handleNavigate} />
     }
 
-    if (currentPath === '/blog') {
-      return <BlogPage onNavigate={handleNavigate} />
+    if (currentPath === '/kontakt') {
+      return <ContactPage onNavigate={handleNavigate} />
     }
 
-    if (currentPath === '/kategorije') {
-      return <CategoriesPage onNavigate={handleNavigate} />
+    if (currentPath === '/blog') {
+      return <BlogPage onNavigate={handleNavigate} />
     }
 
     if (currentPath.startsWith('/post/')) {

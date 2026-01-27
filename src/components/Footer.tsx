@@ -90,13 +90,18 @@ function Footer({ onNavigate }: FooterProps) {
               </a>
             </li>
             <li>
-              <a href="/radovi" onClick={(event) => handleNavigation(event, '/radovi')}>
-                Arhiva radova
+              <a href="/slikovnice" onClick={(event) => handleNavigation(event, '/slikovnice')}>
+                Slikovnice
               </a>
             </li>
             <li>
               <a href="/partneri" onClick={(event) => handleNavigation(event, '/partneri')}>
                 Partneri
+              </a>
+            </li>
+            <li>
+              <a href="/kontakt" onClick={(event) => handleNavigation(event, '/kontakt')}>
+                Kontakt
               </a>
             </li>
           </ul>

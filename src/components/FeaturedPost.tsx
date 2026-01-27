@@ -25,10 +25,21 @@ function FeaturedPost({ onNavigate }: FeaturedPostProps) {
     onNavigate(featuredPost.link)
   }
 
+  const handleCardClick = () => {
+    if (onNavigate) {
+      onNavigate(featuredPost.link)
+    }
+  }
+
   return (
     <section className="featured-post" id="featured">
       <h2 className="section-title">Izdvojeni članak</h2>
-      <div className="featured-card">
+      <div className="featured-card" role="button" tabIndex={0} onClick={handleCardClick} onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          handleCardClick()
+        }
+      }}>
         <div className="featured-image">
           <img src={featuredPost.image} alt="Hedy Lamarr - ikona tehnologije" />
           <div className="featured-tag">{featuredPost.tag}</div>
@@ -40,9 +51,6 @@ function FeaturedPost({ onNavigate }: FeaturedPostProps) {
           </div>
           <h3 className="featured-title">{featuredPost.title}</h3>
           <p className="featured-excerpt">{featuredPost.excerpt}</p>
-          <a href={featuredPost.link} className="read-more" onClick={handleClick}>
-            Pročitaj više <span>→</span>
-          </a>
         </div>
       </div>
     </section>

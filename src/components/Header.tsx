@@ -14,11 +14,11 @@ type NavLink = {
 }
 
 const navLinks: NavLink[] = [
-  { href: '/', label: 'Početna' },
   { href: '/projekt', label: 'O projektu' },
-  { href: '/radovi', label: 'Arhiva radova' },
+  { href: '/slikovnice', label: 'Slikovnice' },
   { href: '/partneri', label: 'Partneri' },
   { href: '/blog', label: 'Blog' },
+  { href: '/kontakt', label: 'Kontakt' },
 ]
 
 function Header({ onNavigate, currentPath }: HeaderProps) {
