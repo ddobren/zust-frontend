@@ -1,5 +1,4 @@
 import { blogPosts } from '../data/blogPosts'
-import { createNavigateHandler } from './utils'
 
 type BlogPageProps = {
   onNavigate: (path: string) => void

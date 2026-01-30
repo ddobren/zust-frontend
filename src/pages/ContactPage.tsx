@@ -18,7 +18,7 @@ const initialState: FormState = {
   message: '',
 }
 
-function ContactPage({ onNavigate }: PageProps) {
+function ContactPage({ }: PageProps) {
   const [formData, setFormData] = useState<FormState>(initialState)
   const [submitted, setSubmitted] = useState(false)
 

@@ -1,5 +1,3 @@
-import type { MouseEvent } from 'react'
-
 const featuredPost = {
   image: 'https://cdn.futura-sciences.com/sources/images/hedy-lamarr-wifi.jpeg',
   tag: 'Novo',
@@ -16,15 +14,6 @@ type FeaturedPostProps = {
 }
 
 function FeaturedPost({ onNavigate }: FeaturedPostProps) {
-  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (!onNavigate) {
-      return
-    }
-
-    event.preventDefault()
-    onNavigate(featuredPost.link)
-  }
-
   const handleCardClick = () => {
     if (onNavigate) {
       onNavigate(featuredPost.link)
