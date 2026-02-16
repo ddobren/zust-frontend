@@ -251,6 +251,22 @@
   box-shadow: 0 28px 60px -36px rgba(93, 78, 169, 0.35);
 }
 
+.landing-content .card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: #f8fafc;
+}
+
+.landing-content .card__image--contain {
+  object-fit: contain;
+  padding: 12px;
+  background: #ffffff;
+}
+
 .landing-content .card__eyebrow {
   font-size: 0.78rem;
   letter-spacing: 0.12em;
