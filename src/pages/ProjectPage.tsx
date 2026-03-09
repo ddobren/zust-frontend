@@ -19,67 +19,84 @@ function ProjectPage({ onNavigate }: PageProps) {
       </section>
 
       <main className="landing-content">
+        <h2 className="section-title">O projektu</h2>
         <article className="intro-card">
-          Projekt je zamišljen kao višegodišnja platforma koja svake godine obrađuje novu inspirativnu priču o ženama u
-          tehnologiji. Uz digitalnu slikovnicu nastaju radionice, scenariji nastavnih satova te materijali za promociju
-          ravnopravnosti spolova i interesa za STEM područja. Hedy Lamarr je prva junakinja – njezin patent frekvencijskog
-          skakanja otvara teme sigurnog komuniciranja, inovacija i građanske odgovornosti.
+          Znamenite žene u svijetu tehnologije školski je projekt koji kroz digitalne priče povezuje kreativnost i tehnologiju
+          u STEAM pristupu (Science, Technology, Engineering, Arts, Mathematics). “A” obuhvaća dizajn, ilustraciju, vizualno
+          pripovijedanje i komunikaciju, dok tehnološki dio uključuje web, digitalne alate i rješavanje problema. Projekt je
+          nastao kao spoj struke web dizajna i želje da učenici rade na sadržajima koji imaju stvarnu vrijednost izvan
+          učionice.
         </article>
 
-        {/*<h2 className="section-title">Ciljevi i rezultati</h2>
         <section className="card-grid">
           <article className="card">
-            <span className="card__eyebrow">Edukacija</span>
-            <h3 className="card__title">Otkrivanje skrivenih priča</h3>
+            <span className="card__eyebrow">STEAM</span>
+            <h3 className="card__title">Kreativnost + tehnologija</h3>
             <p className="card__description">
-              Učimo o ženama čiji je doprinos često ostao u sjeni. Biografski sadržaji i interaktivne vremenske crte pokazuju
-              kako kreativnost i znanost idu zajedno.
+              Učenici istražuju žene koje su oblikovale razvoj tehnologije, spajajući dizajn i kôd u jedinstvenom STEAM
+              procesu. Fokus je na vidljivosti doprinosa koje javnost često zanemaruje.
             </p>
-            <div className="card__links">
-              <a className="card__cta" href="/post/hedy-zivotopis" onClick={createNavigateHandler(onNavigate, '/post/hedy-zivotopis')}>
-                Pročitaj životopis
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-              </a>
-            </div>
           </article>
 
           <article className="card">
-            <span className="card__eyebrow">STEM &amp; IKT</span>
-            <h3 className="card__title">Praktični koncepti</h3>
+            <span className="card__eyebrow">Proces</span>
+            <h3 className="card__title">Istraživanje do objave</h3>
             <p className="card__description">
-              Frekvencijsko skakanje, Bluetooth i sigurnost komunikacija prikazani su kroz infografike, mini-eksperimente i
-              video materijale za nastavu.
+              Radimo cijeli kreativno-tehnološki ciklus: istraživanje i odabir izvora, pisanje scenarija, oblikovanje
+              vizualnog identiteta, izrada digitalnih materijala i objava. Učenici razvijaju grafiku, web dizajn, pripremu
+              sadržaja, timski rad i jasno prenošenje ideja.
             </p>
-            <div className="card__links">
-              <a className="card__cta" href="/post/frekvencijsko-skakanje" onClick={createNavigateHandler(onNavigate, '/post/frekvencijsko-skakanje')}>
-                Pogledaj objašnjenja
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-              </a>
-            </div>
           </article>
 
           <article className="card">
-            <span className="card__eyebrow">Učionica</span>
-            <h3 className="card__title">Materijali za nastavnike</h3>
+            <span className="card__eyebrow">Dugoročno</span>
+            <h3 className="card__title">Platforma koja raste</h3>
             <p className="card__description">
-              Pripremljeni scenariji, listići i radionice osmišljeni su za rad s darovitim učenicima. Svaki modul spaja
-              tehnološku znatiželju i građanske kompetencije.
+              Svaka generacija nastavlja tamo gdje je prethodna stala: nadograđuje sadržaje, širi teme i podiže razinu
+              digitalne izvedbe. Plan je postupno uvoditi više animacije i interaktivnih elemenata te objavljivati dodatne
+              članke i zanimljivosti.
             </p>
-            <div className="card__links">
-              <a className="card__cta" href="/post/materijali-nastavnike" onClick={createNavigateHandler(onNavigate, '/post/materijali-nastavnike')}>
-                Preuzmi materijale
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-              </a>
-            </div>
           </article>
         </section>
-        */}
+
+        <h2 className="section-title">Aktualni rad</h2>
+        <section className="card-grid">
+          <article className="card">
+            <span className="card__eyebrow">Trenutno objavljeno</span>
+            <h3 className="card__title">Digitalna slikovnica: Hedy Lamarr</h3>
+            <p className="card__description">
+              Prva verzija je dostupna u obliku listanja i otvara teme sigurnog komuniciranja, inovacija i građanske
+              odgovornosti kroz priču o frekvencijskom skakanju.
+            </p>
+          </article>
+
+          <article className="card">
+            <span className="card__eyebrow">U izradi</span>
+            <h3 className="card__title">Nova slikovnica: Ada Lovelace</h3>
+            <p className="card__description">
+              Sljedeći korak je slikovnica o Adi Lovelace, s planiranim proširenjima za animacije i interaktivne elemente koje
+              će dodavati buduće generacije učenika.
+            </p>
+          </article>
+        </section>
+
+        <h2 className="section-title">Zašto to radimo</h2>
+        <article className="list-group">
+          <ul>
+            <li>
+              <strong>Osnaživanje djevojaka:</strong> kroz vidljive uzore i konkretan rad na digitalnim projektima gradimo
+              samopouzdanje i realnu sliku o karijeri u tehnologiji i kreativnim industrijama.
+            </li>
+            <li>
+              <strong>Međupredmetno učenje:</strong> prirodno se naslanjamo na Građanski odgoj, Poduzetništvo i primjenu IKT-a
+              te suradnju s lokalnom zajednicom, školama, udrugama i partnerima.
+            </li>
+          </ul>
+        </article>
+
+        <article className="intro-card">
+          Projekt su podržali i financirali Ministarstvo znanosti i obrazovanja te Dubrovačko-neretvanska županija.
+        </article>
 
         <div className="back-link">
           <a href="/" onClick={createNavigateHandler(onNavigate, '/')}>

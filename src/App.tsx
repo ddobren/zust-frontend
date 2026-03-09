@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage'
 import PartnersPage from './pages/PartnersPage'
 import PostPage from './pages/PostPage'
 import ProjectPage from './pages/ProjectPage'
-import ArchivePage from './pages/ArchivePage'
+import SlikovnicePage from './pages/SlikovnicePage'
 import ContactPage from './pages/ContactPage'
 import './styles/article.css'
 import './styles/landing.css'
@@ -56,7 +56,7 @@ function App() {
     }
 
     if (currentPath === '/radovi' || currentPath === '/arhiva' || currentPath === '/radionice' || currentPath === '/slikovnice') {
-      return <ArchivePage onNavigate={handleNavigate} />
+      return <SlikovnicePage onNavigate={handleNavigate} />
     }
 
     if (currentPath === '/partneri') {
