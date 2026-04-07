@@ -14,12 +14,6 @@ function HomePage({ onNavigate }: HomePageProps) {
       <main className="main">
         <FeaturedPost onNavigate={onNavigate} />
         <LatestPosts onNavigate={onNavigate} />
-
-        <div className="load-more">
-          <button className="btn-load-more" type="button">
-            Učitaj više članaka
-          </button>
-        </div>
       </main>
     </>
   )

@@ -40,9 +40,6 @@ function BlogPage({ onNavigate }: BlogPageProps) {
                 <p className="post-date">{post.date}</p>
                 <h3 className="post-title">{post.title}</h3>
                 <p className="post-excerpt">{post.excerpt}</p>
-                <div className="post-tags">
-                  <span className="post-tag">#{post.category.replace(/\s+/g, '').toLowerCase()}</span>
-                </div>
               </div>
             </article>
           ))}

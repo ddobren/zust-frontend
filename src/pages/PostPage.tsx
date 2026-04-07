@@ -23,8 +23,8 @@ function renderPost(post: Article, onNavigate: (path: string) => void) {
         <div className="article-meta">
           <a
             className="article-category"
-            href="/slikovnice"
-            onClick={(event) => handleAnchorNavigate(event, '/slikovnice', onNavigate)}
+            href="/blog"
+            onClick={(event) => handleAnchorNavigate(event, '/blog', onNavigate)}
           >
             {post.category}
           </a>
@@ -32,21 +32,6 @@ function renderPost(post: Article, onNavigate: (path: string) => void) {
         </div>
 
         <h1 className="article-title">{post.title}</h1>
-
-        <div className="article-author">
-          <img src={post.author.avatar} alt={post.author.name} className="article-author__avatar" />
-          <div className="article-author__meta">
-            <span className="article-author__name">{post.author.name}</span>
-            <span className="article-author__role">{post.author.role}</span>
-          </div>
-          <div className="article-author__reading-time">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-            <span>{post.readingTime}</span>
-          </div>
-        </div>
       </header>
 
       <section className="article-hero">
@@ -64,6 +49,13 @@ function renderPost(post: Article, onNavigate: (path: string) => void) {
             {section.paragraphs.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
+
+            {section.image && (
+              <figure className="article-figure">
+                <img src={section.image.src} alt={section.image.alt} />
+                {section.image.caption && <figcaption>{section.image.caption}</figcaption>}
+              </figure>
+            )}
 
             {section.infoBox && (
               <div className="info-panel">
@@ -91,41 +83,32 @@ function renderPost(post: Article, onNavigate: (path: string) => void) {
             <p key={index}>{paragraph}</p>
           ))}
         </section>
-
-        <div className="article-tags">
-          <span className="article-tags__label">Oznake:</span>
-          <div className="article-tags__list">
-            {post.tags.map((tag) => (
-              <span className="article-tag" key={tag}>
-                #{tag}
-              </span>
-            ))}
-          </div>
-        </div>
       </article>
 
-      <section className="related-posts">
-        <h2 className="related-title">Povezani članci</h2>
-        <div className="related-grid">
-          {post.related.map((relatedPost) => (
-            <a
-              className="related-card"
-              href={relatedPost.href}
-              key={relatedPost.href}
-              onClick={(event) => handleAnchorNavigate(event, relatedPost.href, onNavigate)}
-            >
-              <div className="related-image">
-                <img src={relatedPost.image} alt={relatedPost.title} />
-              </div>
-              <div className="related-content">
-                <span className="related-category">{relatedPost.category}</span>
-                <h3>{relatedPost.title}</h3>
-                <span className="related-date">{relatedPost.date}</span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
+      {post.related.length > 0 && (
+        <section className="related-posts">
+          <h2 className="related-title">Povezani članci</h2>
+          <div className="related-grid">
+            {post.related.map((relatedPost) => (
+              <a
+                className="related-card"
+                href={relatedPost.href}
+                key={relatedPost.href}
+                onClick={(event) => handleAnchorNavigate(event, relatedPost.href, onNavigate)}
+              >
+                <div className="related-image">
+                  <img src={relatedPost.image} alt={relatedPost.title} />
+                </div>
+                <div className="related-content">
+                  <span className="related-category">{relatedPost.category}</span>
+                  <h3>{relatedPost.title}</h3>
+                  <span className="related-date">{relatedPost.date}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   )
 }
