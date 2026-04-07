@@ -211,6 +211,29 @@
   margin-bottom: 22px;
 }
 
+.article-cta {
+  margin-top: 28px;
+}
+
+.article-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 18px 36px -24px rgba(15, 23, 42, 0.35);
+  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+}
+
+.article-cta a:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 22px 40px -24px rgba(15, 23, 42, 0.42);
+}
+
 .related-posts {
   background: var(--bg-secondary);
   padding: 70px clamp(20px, 5vw, 40px) 80px;

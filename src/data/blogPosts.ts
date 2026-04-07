@@ -10,6 +10,16 @@ export type BlogPostCard = {
 
 export const blogPosts: BlogPostCard[] = [
   {
+    image: '/assets/posts/hedy-inspiracija-thumbnail.png',
+    alt: 'Naslovna ilustracija digitalne slikovnice Hedy Lamarr: Inspiracija & inovacija',
+    category: 'Slikovnica',
+    date: '7. Travnja 2026.',
+    title: 'Hedy Lamarr: Inspiracija & inovacija',
+    excerpt:
+      'Predstavljamo digitalnu slikovnicu nastalu u školskom projektu: priču o Hedy Lamarr kao glumici, inovatorici i prvoj junakinji serije o znamenitim ženama u tehnologiji.',
+    link: '/post/hedy-lamarr-inspiracija-inovacija',
+  },
+  {
     image: '/assets/posts/grace/grace-thumbnail.jpg',
     alt: 'Ilustracija Grace Hopper',
     category: 'Članak',

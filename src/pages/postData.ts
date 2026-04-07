@@ -46,6 +46,10 @@ export type Article = {
     heading: string
     paragraphs: string[]
   }
+  cta?: {
+    label: string
+    href: string
+  }
   related: RelatedPost[]
 }
 
@@ -56,6 +60,71 @@ const defaultAuthor = {
 }
 
 const posts: Record<string, Article> = {
+  'hedy-lamarr-inspiracija-inovacija': {
+    slug: 'hedy-lamarr-inspiracija-inovacija',
+    title: 'Hedy Lamarr: Inspiracija & inovacija',
+    category: 'Slikovnica',
+    date: '7. Travnja 2026.',
+    readingTime: '3 min čitanja',
+    author: defaultAuthor,
+    heroImage: {
+      src: '/assets/posts/hedy-inspiracija-thumbnail.png',
+      alt: 'Naslovna ilustracija digitalne slikovnice Hedy Lamarr: Inspiracija & inovacija',
+    },
+    intro:
+      'Na našoj web stranici dostupna je digitalna slikovnica “Hedy Lamarr: Inspiracija & inovacija”, nastala u sklopu školskog projekta rada s darovitim učenicima “Znamenite žene u svijetu tehnologije”, koji je podržalo Ministarstvo znanosti, obrazovanja i mladih. Slikovnicu su izradili učenici Ekonomske i trgovačke škole Dubrovnik uz mentorsku podršku nastavnika, kao spoj kreativnog rada i interesa za tehnologiju.',
+    sections: [
+      {
+        id: 'o-slikovnici',
+        heading: 'Priča o životu između filma i znanosti',
+        paragraphs: [
+          'Slikovnica prati život Hedy Lamarr, žene koja je bila poznata kao velika filmska zvijezda zlatnog doba Hollywooda, ali je istovremeno imala i snažnu znatiželju prema znanosti i izumima.',
+          'Kroz priču se upoznajemo s njezinim putem od djetinjstva i početaka glumačke karijere u Europi, do preseljenja u Ameriku i uspjeha u Hollywoodu.',
+        ],
+        image: {
+          src: '/assets/posts/hedy-inspiracija-thumbnail.png',
+          alt: 'Naslovnica slikovnice Hedy Lamarr: Inspiracija & inovacija',
+          caption: 'Digitalna slikovnica spaja ilustraciju, pripovijedanje i temu tehnološke inovacije.',
+        },
+      },
+      {
+        id: 'tehnoloski-doprinos',
+        heading: 'Zašto je Hedy važna i izvan filmskog platna',
+        paragraphs: [
+          'Posebno zanimljiv dio slikovnice govori o Hedyinom doprinosu tehnologiji. Prikazano je kako je zajedno sa skladateljem Georgeom Antheilom radila na ideji sigurnije komunikacije promjenom frekvencija.',
+          'Taj se princip kasnije povezuje s razvojem modernih bežičnih tehnologija, zbog čega je Hedy danas prepoznata ne samo kao glumica nego i kao inovatorica.',
+          'Na njezin rođendan, 9. studenoga, obilježava se Svjetski dan izumitelja, što dodatno pokazuje koliko je njezin doprinos postao važan u širem kulturnom i tehnološkom kontekstu.',
+        ],
+      },
+      {
+        id: 'prvi-korak',
+        heading: 'Prvi korak u većoj seriji priča',
+        paragraphs: [
+          'Ova slikovnica prvi je korak u seriji priča o ženama koje su ostavile trag u svijetu tehnologije. Cilj projekta je da takve priče postanu vidljivije i da motiviraju učenike na učenje, stvaranje i razvijanje vlastitih ideja.',
+          'Upravo zato slikovnica nije zamišljena samo kao završeni rad, nego i kao dio šire obrazovne platforme koja povezuje kreativnost, web i STEM teme.',
+        ],
+        infoBox: {
+          title: 'Projektni okvir',
+          items: [
+            'Slikovnica je nastala u Ekonomskoj i trgovačkoj školi Dubrovnik.',
+            'Razvijena je kroz rad s darovitim učenicima i mentorsku podršku nastavnika.',
+            'Projekt je podržalo Ministarstvo znanosti, obrazovanja i mladih.',
+          ],
+        },
+      },
+    ],
+    conclusion: {
+      heading: 'Poziv na čitanje digitalnog izdanja',
+      paragraphs: [
+        'Ako želite saznati više i vidjeti kako slikovnica izgleda, možete prelistati digitalno izdanje na priloženom linku. To je ujedno i najizravniji način da se vidi kako učenici spajaju priču, ilustraciju i tehnologiju u jednom digitalnom formatu.',
+      ],
+    },
+    cta: {
+      label: 'Prelistaj digitalno izdanje',
+      href: 'https://zust-frontend.vercel.app/',
+    },
+    related: [],
+  },
   'grace-hopper-vizija-programiranja-blizeg-ljudima': {
     slug: 'grace-hopper-vizija-programiranja-blizeg-ljudima',
     title: 'Grace Hopper: Vizija programiranja bližeg ljudima',

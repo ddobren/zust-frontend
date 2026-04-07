@@ -83,6 +83,14 @@ function renderPost(post: Article, onNavigate: (path: string) => void) {
             <p key={index}>{paragraph}</p>
           ))}
         </section>
+
+        {post.cta && (
+          <div className="article-cta">
+            <a href={post.cta.href} target="_blank" rel="noreferrer noopener">
+              {post.cta.label}
+            </a>
+          </div>
+        )}
       </article>
 
       {post.related.length > 0 && (
