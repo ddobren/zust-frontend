@@ -141,6 +141,9 @@ function Footer({ onNavigate }: FooterProps) {
             </svg>
             020 331 620
           </p>
+          <div className="footer-school-logo">
+            <img src="/assets/logo-etd.png" alt="Logo Ekonomske i trgovačke škole Dubrovnik" loading="lazy" />
+          </div>
         </div>
       </div>
       <div className="footer-bottom">

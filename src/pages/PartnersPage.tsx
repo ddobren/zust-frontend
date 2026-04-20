@@ -5,7 +5,7 @@ type PageProps = {
 type Partner = {
   name: string
   eyebrow: string
-  url: string
+  url?: string
   description: string
   image: string
   alt: string
@@ -31,6 +31,16 @@ const partners: Partner[] = [
       'Od 1. 1. 2025. preuzima programe UO za obrazovanje, šport, socijalnu skrb i civilno društvo Grada Dubrovnika. Cjelogodišnje vodi Forum mladih, Dubrovački karneval, zimski festival te projekte s gradskim udrugama kroz civilno-javno partnerstvo.',
     image: '/assets/partneri/CDMO.jpg',
     alt: 'CDMO Dubrovnik',
+  },
+  {
+    name: 'Zajednica tehničke kulture Grada Dubrovnika',
+    eyebrow: 'Krovna organizacija tehničke kulture',
+    url: 'https://ztk-du.hr/',
+    description:
+      'Zajednica tehničke kulture Grada Dubrovnika krovna je organizacija udruga tehničke kulture na području Grada Dubrovnika. U članstvu trenutno okuplja 24 neprofitne udruge građana te koordinira zajedničke potrebe i djelatnosti tehničke kulture kroz Program javnih potreba i pojedinačne programe udruga članica. Osnovana je 1994. godine, a djeluje kao pravni sljedbenik Saveza organizacija tehničke kulture “Narodna tehnika” Dubrovnik.',
+    image: '/assets/partneri/ztkgd.png',
+    alt: 'Zajednica tehničke kulture Grada Dubrovnika',
+    imageFit: 'contain',
   },
   {
     name: 'LUMIART',
@@ -86,14 +96,16 @@ function PartnersPage({ }: PageProps) {
               <span className="card__eyebrow">{partner.eyebrow}</span>
               <h3 className="card__title">{partner.name}</h3>
               <p className="card__description">{partner.description}</p>
-              <div className="card__links">
-                <a className="card__cta" href={partner.url} target="_blank" rel="noreferrer noopener">
-                  Saznaj više
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <polyline points="9 18 15 12 9 6" />
-                  </svg>
-                </a>
-              </div>
+              {partner.url && (
+                <div className="card__links">
+                  <a className="card__cta" href={partner.url} target="_blank" rel="noreferrer noopener">
+                    Saznaj više
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </a>
+                </div>
+              )}
             </article>
           ))}
         </section>

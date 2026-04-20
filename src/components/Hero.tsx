@@ -2,10 +2,9 @@ function Hero() {
   return (
     <section className="hero" id="hero">
       <div className="hero-content">
-        <h1 className="hero-title">Znamenite žene u svijetu tehnologije</h1>
+        <h1 className="hero-title">Žene koje su promijenile tehnologiju i priče koje to dokazuju.</h1>
         <p className="hero-subtitle">
-          Inspirativne priče poput Hedy Lamarr - glumice i izumiteljice koja je postavila temelje moderne bežične
-          komunikacije
+          Projekt Ekonomske i trgovačke škole Dubrovnik nastao u okviru programa rada s darovitim učenicima
         </p>
       </div>
     </section>
