@@ -18,6 +18,8 @@ const initialState: FormState = {
   message: '',
 }
 
+const projectEmail = 'projekt.znamenite@gmail.com'
+
 function ContactPage({ }: PageProps) {
   const [formData, setFormData] = useState<FormState>(initialState)
   const [submitted, setSubmitted] = useState(false)
@@ -30,6 +32,15 @@ function ContactPage({ }: PageProps) {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    const subject = formData.subject.trim() || 'Poruka s web stranice projekta'
+    const body = [
+      `Ime i prezime: ${formData.name}`,
+      `E-mail: ${formData.email}`,
+      '',
+      formData.message,
+    ].join('\n')
+
+    window.location.href = `mailto:${projectEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
     setSubmitted(true)
     setFormData(initialState)
   }
@@ -107,7 +118,7 @@ function ContactPage({ }: PageProps) {
               Pošalji poruku
             </button>
 
-            {submitted && <p className="form-success">Hvala! Vaša poruka je zaprimljena.</p>}
+            {submitted && <p className="form-success">Otvoren je vaš mail klijent s pripremljenom porukom.</p>}
           </form>
         </section>
       </main>
